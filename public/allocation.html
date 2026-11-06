@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostelMS - Room Allocations</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="brand-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+            </div>
+            <div class="brand-details">
+                <span class="brand-name">HostelMS</span>
+                <span class="brand-edition">Enterprise Suite</span>
+            </div>
+        </a>
+
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Core Management</div>
+            <a href="index.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="9" rx="1" />
+                    <rect x="14" y="3" width="7" height="5" rx="1" />
+                    <rect x="14" y="12" width="7" height="9" rx="1" />
+                    <rect x="3" y="16" width="7" height="5" rx="1" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="students.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <span>Students</span>
+            </a>
+            <a href="rooms.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>Rooms & Beds</span>
+            </a>
+            <a href="allocation.html" class="sidebar-link active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <span>Allocations</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="admin-avatar">AD</div>
+            <div class="admin-info">
+                <span class="admin-name">Admin Portal</span>
+                <span class="admin-role">Campus Warden</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="app-container">
+        <!-- Topbar Header -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle-btn" id="menuToggleBtn" title="Toggle Navigation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="breadcrumbs">
+                    <span>HostelMS</span>
+                    <span>/</span>
+                    <span class="current">Room Allocations</span>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="system-status-pill">
+                    <div class="pulse-dot"></div>
+                    <span>MySQL Connected</span>
+                </div>
+                <div class="clock-pill font-mono" id="topbarClock">--:--</div>
+                <button type="button" class="btn btn-primary btn-sm" onclick="openAllocateModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                    <span>Allocate Room</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-main">
+            <div class="page-header-row">
+                <div class="page-titles">
+                    <h1>Room Allocations & Checkouts</h1>
+                    <p>Assign hostel accommodation to enrolled students, track active residencies, and process room check-outs.</p>
+                </div>
+                <div class="header-action-group">
+                    <button class="btn btn-secondary" onclick="exportAllocationsCSV()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Export CSV</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="openAllocateModal()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                        <span>+ New Allocation</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Toolbar & Filter Row -->
+            <div class="card">
+                <div class="card-body" style="padding: 1.25rem 1.5rem;">
+                    <div class="toolbar-row" style="margin-bottom: 0;">
+                        <div class="search-input-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="searchAllocationInput" class="form-control" placeholder="Search student name, roll number, room number...">
+                        </div>
+
+                        <div class="filter-actions">
+                            <select id="allocationStatusFilter" class="form-control" style="width: 170px;">
+                                <option value="ALL">All Records</option>
+                                <option value="Active" selected>Active Only</option>
+                                <option value="Completed">Completed / Vacated</option>
+                            </select>
+
+                            <span id="allocCountBadge" class="badge badge-secondary">0 Records</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Allocations Table Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                        <span>Hostel Room Assignments</span>
+                    </div>
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Allocation ID</th>
+                                    <th>Student Resident</th>
+                                    <th>Roll Number</th>
+                                    <th>Department</th>
+                                    <th>Assigned Room</th>
+                                    <th>Room Category</th>
+                                    <th>Allocated Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allocationList">
+                                <tr>
+                                    <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 3rem;">
+                                        Loading allocation ledger...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- New Allocation Modal -->
+    <div class="modal-backdrop" id="allocateModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                    <span>Assign Room to Student</span>
+                </h3>
+                <button type="button" class="modal-close" onclick="closeAllocateModal()">&times;</button>
+            </div>
+            <form id="allocationForm">
+                <div class="modal-body">
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <div class="form-group">
+                            <label class="form-label" for="student_id">Select Student Resident *</label>
+                            <select class="form-control" id="student_id" required>
+                                <option value="">Loading unallocated students...</option>
+                            </select>
+                            <small style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">
+                                Only students without an active room assignment are listed.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="room_id">Select Available Room *</label>
+                            <select class="form-control" id="room_id" required>
+                                <option value="">Loading available rooms...</option>
+                            </select>
+                            <small style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">
+                                Displays rooms with open beds and not in maintenance.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="allocated_on">Allocation Effective Date *</label>
+                            <input type="date" class="form-control" id="allocated_on" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeAllocateModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm Allocation</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- UI Helper Core -->
+    <script src="js/app.js"></script>
+    <!-- Page Controller -->
+    <script src="js/allocation.js"></script>
+</body>
+</html>

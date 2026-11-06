@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostelMS - Student Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="brand-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+            </div>
+            <div class="brand-details">
+                <span class="brand-name">HostelMS</span>
+                <span class="brand-edition">Enterprise Suite</span>
+            </div>
+        </a>
+
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Core Management</div>
+            <a href="index.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="9" rx="1" />
+                    <rect x="14" y="3" width="7" height="5" rx="1" />
+                    <rect x="14" y="12" width="7" height="9" rx="1" />
+                    <rect x="3" y="16" width="7" height="5" rx="1" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="students.html" class="sidebar-link active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <span>Students</span>
+            </a>
+            <a href="rooms.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>Rooms & Beds</span>
+            </a>
+            <a href="allocation.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <span>Allocations</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="admin-avatar">AD</div>
+            <div class="admin-info">
+                <span class="admin-name">Admin Portal</span>
+                <span class="admin-role">Campus Warden</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="app-container">
+        <!-- Topbar Header -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle-btn" id="menuToggleBtn" title="Toggle Navigation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="breadcrumbs">
+                    <span>HostelMS</span>
+                    <span>/</span>
+                    <span class="current">Student Directory</span>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="system-status-pill">
+                    <div class="pulse-dot"></div>
+                    <span>MySQL Connected</span>
+                </div>
+                <div class="clock-pill font-mono" id="topbarClock">--:--</div>
+                <button type="button" class="btn btn-primary btn-sm" onclick="openAddStudentModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                    <span>Register Student</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-main">
+            <div class="page-header-row">
+                <div class="page-titles">
+                    <h1>Student Directory</h1>
+                    <p>Manage resident profiles, academic departments, contact details, and assigned hostel accommodation.</p>
+                </div>
+                <div class="header-action-group">
+                    <button class="btn btn-secondary" onclick="exportStudentsCSV()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Export CSV</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="openAddStudentModal()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                        <span>+ Register New Student</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Toolbar & Filter Row -->
+            <div class="card">
+                <div class="card-body" style="padding: 1.25rem 1.5rem;">
+                    <div class="toolbar-row" style="margin-bottom: 0;">
+                        <div class="search-input-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="searchStudentInput" class="form-control" placeholder="Search by name, roll number, department, or room...">
+                        </div>
+
+                        <div class="filter-actions">
+                            <select id="departmentFilter" class="form-control" style="width: 170px;">
+                                <option value="ALL">All Departments</option>
+                            </select>
+
+                            <select id="genderFilter" class="form-control" style="width: 140px;">
+                                <option value="ALL">All Genders</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+
+                            <span id="studentCountBadge" class="badge badge-secondary">0 Students</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Table Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <span>Enrolled Student Residents</span>
+                    </div>
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Roll Number</th>
+                                    <th>Department</th>
+                                    <th>Academic Year</th>
+                                    <th>Contact Info</th>
+                                    <th>Gender</th>
+                                    <th>Room Assignment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentList">
+                                <tr>
+                                    <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 3rem;">
+                                        Loading registered students...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div class="modal-backdrop" id="addStudentModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                    <span>Register New Student</span>
+                </h3>
+                <button type="button" class="modal-close" onclick="closeAddStudentModal()">&times;</button>
+            </div>
+            <form id="studentForm">
+                <div class="modal-body">
+                    <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="form-group full-width">
+                            <label class="form-label" for="name">Student Full Name *</label>
+                            <input type="text" class="form-control" id="name" placeholder="e.g. Anand Kumar" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="roll_number">Roll / Reg Number *</label>
+                            <input type="text" class="form-control" id="roll_number" placeholder="e.g. 25CSE001" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="department">Department</label>
+                            <input type="text" class="form-control" id="department" placeholder="e.g. Computer Science">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="year">Year of Study</label>
+                            <input type="number" class="form-control" id="year" placeholder="1, 2, 3, or 4" min="1" max="6" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="gender">Gender</label>
+                            <select class="form-control" id="gender">
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="phone">Phone Contact</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="e.g. +91 9876543210">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="e.g. student@hostel.edu">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddStudentModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Student Modal -->
+    <div class="modal-backdrop" id="editStudentModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    <span>Update Student Details</span>
+                </h3>
+                <button type="button" class="modal-close" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="editStudentForm">
+                <div class="modal-body">
+                    <input type="hidden" id="edit_student_id">
+                    <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="form-group full-width">
+                            <label class="form-label" for="edit_name">Student Full Name *</label>
+                            <input type="text" class="form-control" id="edit_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit_roll_number">Roll / Reg Number *</label>
+                            <input type="text" class="form-control" id="edit_roll_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit_department">Department</label>
+                            <input type="text" class="form-control" id="edit_department">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit_year">Year of Study</label>
+                            <input type="number" class="form-control" id="edit_year" min="1" max="6">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit_gender">Gender</label>
+                            <select class="form-control" id="edit_gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="edit_phone">Phone Contact</label>
+                            <input type="tel" class="form-control" id="edit_phone">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="edit_email">Email Address</label>
+                            <input type="email" class="form-control" id="edit_email">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- UI Helper Core -->
+    <script src="js/app.js"></script>
+    <!-- Page Controller -->
+    <script src="js/students.js"></script>
+</body>
+</html>

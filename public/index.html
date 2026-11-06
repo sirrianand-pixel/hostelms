@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostelMS - Executive Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Professional Left Sidebar -->
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="brand-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+            </div>
+            <div class="brand-details">
+                <span class="brand-name">HostelMS</span>
+                <span class="brand-edition">Enterprise Suite</span>
+            </div>
+        </a>
+
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Core Management</div>
+            <a href="index.html" class="sidebar-link active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="9" rx="1" />
+                    <rect x="14" y="3" width="7" height="5" rx="1" />
+                    <rect x="14" y="12" width="7" height="9" rx="1" />
+                    <rect x="3" y="16" width="7" height="5" rx="1" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="students.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <span>Students</span>
+            </a>
+            <a href="rooms.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>Rooms & Beds</span>
+            </a>
+            <a href="allocation.html" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <span>Allocations</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="admin-avatar">AD</div>
+            <div class="admin-info">
+                <span class="admin-name">Admin Portal</span>
+                <span class="admin-role">Campus Warden</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="app-container">
+        <!-- Topbar Header -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle-btn" id="menuToggleBtn" title="Toggle Navigation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="breadcrumbs">
+                    <span>HostelMS</span>
+                    <span>/</span>
+                    <span class="current">Overview Dashboard</span>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="system-status-pill">
+                    <div class="pulse-dot"></div>
+                    <span>MySQL Connected</span>
+                </div>
+                <div class="clock-pill font-mono" id="topbarClock">--:--</div>
+                <a href="allocation.html" class="btn btn-primary btn-sm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                    <span>Allocate Room</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Page Content -->
+        <main class="page-main">
+            <div class="page-header-row">
+                <div class="page-titles">
+                    <h1>Executive Overview</h1>
+                    <p>Real-time occupancy metrics, resident allocations, and capacity analytics.</p>
+                </div>
+                <div class="header-action-group">
+                    <a href="students.html" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                        <span>Add Student</span>
+                    </a>
+                    <a href="rooms.html" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                        <span>Add Room</span>
+                    </a>
+                    <a href="allocation.html" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <span>New Allocation</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card card-primary">
+                    <div class="stat-meta">
+                        <span class="stat-label">Total Students</span>
+                        <span class="stat-value" id="statStudents">-</span>
+                        <span class="stat-subtext">Registered residents</span>
+                    </div>
+                    <div class="stat-icon-wrapper icon-wrap-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="stat-card card-info">
+                    <div class="stat-meta">
+                        <span class="stat-label">Total Rooms</span>
+                        <span class="stat-value" id="statRooms">-</span>
+                        <span class="stat-subtext" id="statBedsSub">Calculating beds...</span>
+                    </div>
+                    <div class="stat-icon-wrapper icon-wrap-info">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="stat-card card-success">
+                    <div class="stat-meta">
+                        <span class="stat-label">Available Rooms</span>
+                        <span class="stat-value" id="statAvailableRooms">-</span>
+                        <span class="stat-subtext">Rooms with open capacity</span>
+                    </div>
+                    <div class="stat-icon-wrapper icon-wrap-success">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="stat-card card-warning">
+                    <div class="stat-meta">
+                        <span class="stat-label">Active Allocations</span>
+                        <span class="stat-value" id="statAllocations">-</span>
+                        <span class="stat-subtext" id="occupancyRateSub">Occupancy rate</span>
+                    </div>
+                    <div class="stat-icon-wrapper icon-wrap-warning">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Capacity Progress Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
+                        <span>Hostel Capacity & Bed Utilization</span>
+                    </div>
+                    <span id="occupancyBadge" class="badge badge-info">Calculating...</span>
+                </div>
+                <div class="card-body">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem; font-size: 0.875rem;">
+                        <span style="font-weight: 600; color: var(--text-main);">Overall Bed Occupancy</span>
+                        <span style="font-weight: 700; color: var(--primary);" id="occupancyPercentageText">0%</span>
+                    </div>
+                    <div class="occupancy-bar" style="width: 100%; height: 12px; margin-bottom: 1.25rem;">
+                        <div class="occupancy-fill" id="occupancyOverallFill" style="width: 0%;"></div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                        <div>
+                            <span style="font-size: 0.775rem; color: var(--text-muted); font-weight: 600;">TOTAL CAPACITY</span>
+                            <div style="font-size: 1.25rem; font-weight: 800;" id="totalCapacityBeds">- Beds</div>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.775rem; color: var(--text-muted); font-weight: 600;">OCCUPIED BEDS</span>
+                            <div style="font-size: 1.25rem; font-weight: 800; color: var(--primary);" id="occupiedCapacityBeds">- Beds</div>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.775rem; color: var(--text-muted); font-weight: 600;">AVAILABLE BEDS</span>
+                            <div style="font-size: 1.25rem; font-weight: 800; color: var(--success);" id="vacantCapacityBeds">- Beds</div>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.775rem; color: var(--text-muted); font-weight: 600;">FULL ROOMS</span>
+                            <div style="font-size: 1.25rem; font-weight: 800; color: var(--danger);" id="fullRoomsCount">- Rooms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-Column Grid: Recent Allocations & Live Room Status -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem;">
+                <!-- Recent Allocations -->
+                <div class="card" style="margin-bottom: 0;">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Recent Allocations</span>
+                        </div>
+                        <a href="allocation.html" class="btn btn-secondary btn-sm">View All &rarr;</a>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Room</th>
+                                        <th>Allocated On</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentAllocationsBody">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2.5rem;">
+                                            Loading recent activity...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Room Status -->
+                <div class="card" style="margin-bottom: 0;">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            <span>Room Occupancy Status</span>
+                        </div>
+                        <a href="rooms.html" class="btn btn-secondary btn-sm">Manage Rooms &rarr;</a>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Room</th>
+                                        <th>Type</th>
+                                        <th>Occupancy</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="quickRoomsBody">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2.5rem;">
+                                            Loading room statuses...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- UI Helper Core -->
+    <script src="js/app.js"></script>
+
+    <script>
+        async function loadDashboard() {
+            try {
+                // Fetch Stats
+                const statsRes = await fetch('/api/allocations/stats');
+                if (statsRes.ok) {
+                    const stats = await statsRes.json();
+                    document.getElementById('statStudents').textContent = stats.totalStudents || 0;
+                    document.getElementById('statRooms').textContent = stats.totalRooms || 0;
+                    document.getElementById('statAvailableRooms').textContent = stats.availableRooms || 0;
+                    document.getElementById('statAllocations').textContent = stats.activeAllocations || 0;
+
+                    const totalCap = parseInt(stats.totalCapacity) || 0;
+                    const activeAllocs = parseInt(stats.activeAllocations) || 0;
+                    const vacantBeds = Math.max(0, totalCap - activeAllocs);
+                    const percent = totalCap > 0 ? Math.round((activeAllocs / totalCap) * 100) : 0;
+
+                    document.getElementById('statBedsSub').textContent = `${totalCap} Total Beds in Hostel`;
+                    document.getElementById('occupancyRateSub').textContent = `${percent}% hostel utilization`;
+                    document.getElementById('occupancyPercentageText').textContent = `${percent}% (${activeAllocs}/${totalCap} beds)`;
+                    
+                    const fill = document.getElementById('occupancyOverallFill');
+                    fill.style.width = `${percent}%`;
+                    if (percent >= 90) fill.className = 'occupancy-fill full';
+
+                    document.getElementById('totalCapacityBeds').textContent = `${totalCap} Beds`;
+                    document.getElementById('occupiedCapacityBeds').textContent = `${activeAllocs} Beds`;
+                    document.getElementById('vacantCapacityBeds').textContent = `${vacantBeds} Beds`;
+                    document.getElementById('fullRoomsCount').textContent = `${stats.fullRooms || 0} Rooms`;
+
+                    const badge = document.getElementById('occupancyBadge');
+                    if (percent >= 90) {
+                        badge.className = 'badge badge-danger';
+                        badge.innerHTML = `<span class="badge-dot"></span> Near Capacity`;
+                    } else if (percent >= 50) {
+                        badge.className = 'badge badge-warning';
+                        badge.innerHTML = `<span class="badge-dot"></span> Moderate Occupancy`;
+                    } else {
+                        badge.className = 'badge badge-success';
+                        badge.innerHTML = `<span class="badge-dot"></span> High Availability`;
+                    }
+                }
+
+                // Fetch Recent Allocations
+                const allocRes = await fetch('/api/allocations');
+                if (allocRes.ok) {
+                    const allocs = await allocRes.json();
+                    const tbody = document.getElementById('recentAllocationsBody');
+                    if (allocs.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2rem;">No allocation records found</td></tr>`;
+                    } else {
+                        tbody.innerHTML = allocs.slice(0, 5).map(a => {
+                            const initials = getInitials(a.student_name);
+                            const avatarBg = getAvatarColor(a.student_name);
+                            const isActive = a.status === 'Active';
+
+                            return `
+                                <tr>
+                                    <td>
+                                        <div class="student-cell">
+                                            <div class="student-avatar" style="background: ${avatarBg}">${initials}</div>
+                                            <div>
+                                                <div class="student-meta-name">${escapeHtml(a.student_name)}</div>
+                                                <div class="student-meta-sub font-mono">${escapeHtml(a.roll_number)}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <strong>Room ${escapeHtml(a.room_number)}</strong>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">${escapeHtml(a.room_type || 'Standard')}</div>
+                                    </td>
+                                    <td><span class="font-mono" style="font-size: 0.825rem;">${a.allocated_on}</span></td>
+                                    <td>
+                                        <span class="badge ${isActive ? 'badge-success' : 'badge-secondary'}">
+                                            <span class="badge-dot"></span>
+                                            ${escapeHtml(a.status)}
+                                        </span>
+                                    </td>
+                                </tr>
+                            `;
+                        }).join('');
+                    }
+                }
+
+                // Fetch Quick Rooms
+                const roomsRes = await fetch('/api/rooms');
+                if (roomsRes.ok) {
+                    const rooms = await roomsRes.json();
+                    const tbody = document.getElementById('quickRoomsBody');
+                    if (rooms.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2rem;">No rooms configured yet</td></tr>`;
+                    } else {
+                        tbody.innerHTML = rooms.slice(0, 5).map(r => {
+                            const percent = r.capacity > 0 ? Math.min(100, Math.round((r.current_occupancy / r.capacity) * 100)) : 0;
+                            let badgeClass = 'badge-success';
+                            if (r.status === 'Full') badgeClass = 'badge-danger';
+                            else if (r.status === 'Maintenance') badgeClass = 'badge-warning';
+
+                            return `
+                                <tr>
+                                    <td>
+                                        <div style="font-weight: 800; color: var(--text-main);">Room ${escapeHtml(r.room_number)}</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">${r.floor !== null ? `Floor ${r.floor}` : ''}</div>
+                                    </td>
+                                    <td>${escapeHtml(r.room_type || 'Sharing')}</td>
+                                    <td>
+                                        <div class="occupancy-container">
+                                            <div class="occupancy-bar">
+                                                <div class="occupancy-fill ${r.current_occupancy >= r.capacity ? 'full' : ''}" style="width: ${percent}%;"></div>
+                                            </div>
+                                            <span class="font-mono" style="font-size: 0.8rem; font-weight: 600;">${r.current_occupancy}/${r.capacity}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge ${badgeClass}">
+                                            <span class="badge-dot"></span>
+                                            ${escapeHtml(r.status)}
+                                        </span>
+                                    </td>
+                                </tr>
+                            `;
+                        }).join('');
+                    }
+                }
+            } catch (err) {
+                console.error('Error loading dashboard:', err);
+                showToast('Failed to load dashboard metrics: ' + err.message, 'danger');
+            }
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>
